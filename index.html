@@ -7,15 +7,15 @@
   </head>
   <body class="bg-slate-700 text-white">
     <div class="grid grid-cols-2 gap-2 p-2">
-      <label for="input-n">Total Number of People</label>
+      <label for="input-n">Total Number of People (N)</label>
       <input id="input-n" type="number" value="10" class="bg-slate-500 px-1" />
-      <label for="input-k">k-th person to kill</label>
+      <label for="input-k">k-th person to kill (k)</label>
       <input id="input-k" type="number" value="2" class="bg-slate-500 px-1" />
       <input id="run" type="button" value="Run" class="col-span-2 bg-slate-600 hover:bg-slate-500 cursor-pointer w-fit mx-auto px-10 py-0.5 rounded-md">
       <div id="survivor" class="col-span-2 text-center rounded-md"></div>
     </div>
     <div class="bg-slate-300 h-px"></div>
-    <div id="people" class="flex gap-2 p-2"></div>
+    <div id="people" class="flex flex-wrap gap-2 p-2"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
