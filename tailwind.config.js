@@ -11,6 +11,7 @@ export default {
       },
       keyframes: {
         colorChange: {
+          '50%': { backgroundColor: "red" },
           '100%': { backgroundColor: "black" },
         }
       }
