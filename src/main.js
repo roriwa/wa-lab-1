@@ -3,10 +3,10 @@ import './index.css';
 
 function dirtyCallback() {
     // get html elements
-    const peopleContainer: HTMLDivElement = document.getElementById('people') as HTMLDivElement;
-    const nInput: HTMLInputElement = document.getElementById('input-n') as HTMLInputElement;
-    const kInput: HTMLInputElement = document.getElementById('input-k') as HTMLInputElement;
-    const result: HTMLDivElement = document.getElementById('survivor') as HTMLDivElement;
+    const peopleContainer = document.getElementById('people');
+    const nInput = document.getElementById('input-n');
+    const kInput = document.getElementById('input-k');
+    const result = document.getElementById('survivor');
 
     // reset of children
     peopleContainer.innerHTML = "";
@@ -20,32 +20,16 @@ function dirtyCallback() {
     updateHTML(answer, { peopleContainer, result });
 }
 
-interface Config {
-    n: number
-    k: number
-}
-
-interface Answer {
-    deadPeopleInOrder: number[]
-    survivor: number
-}
-
-interface State {
-    deadOrder: number[]
-    circle: number[]
-    index: number
-}
-
-function calculateJosephusProblem({ n, k }: Config): Answer {
-    function createCircle(size: number, current: number): number[] {
+function calculateJosephusProblem({ n, k }) {
+    function createCircle(size, current) {
         return size > 0 ? [current, ...createCircle(size-1, current+1)] : [];
     }
 
-    function sliceArray(arr: number[], start: number, end: number): number[] {
+    function sliceArray(arr, start, end) {
         return (start < end) ? [arr[start], ...sliceArray(arr, start + 1, end)] : [];
     }
 
-    function solve(state: State, k: number): State {
+    function solve(state, k) {
         if (state.circle.length > 1) {
             const index = (state.index + k - 1) % state.circle.length;
             return solve({
@@ -70,8 +54,8 @@ function calculateJosephusProblem({ n, k }: Config): Answer {
     };
 }
 
-function updateHTML({ deadPeopleInOrder, survivor }: Answer, { peopleContainer, result }: { peopleContainer: HTMLDivElement, result: HTMLDivElement }) {
-    function createPeopleElements(container: HTMLDivElement, current: number, n: number): HTMLDivElement[] {
+function updateHTML({ deadPeopleInOrder, survivor }, { peopleContainer, result }) {
+    function createPeopleElements(container, current, n) {
         if (current < n) {
             const newPerson = document.createElement('div');
             newPerson.innerText = `${current+1}`;
@@ -83,9 +67,9 @@ function updateHTML({ deadPeopleInOrder, survivor }: Answer, { peopleContainer, 
         }
     }
 
-    function applyAnimations(elements: HTMLDivElement[], deadInOrder: number[], current: number): void {
+    function applyAnimations(elements, deadInOrder, current) {
         if (current >= deadInOrder.length) return;
-        const delay: number = 200;
+        const delay = 200;
         const personIndex = deadInOrder[current];
         const personElement = elements[personIndex];
         personElement.classList.add('animate-color-change');
@@ -99,7 +83,7 @@ function updateHTML({ deadPeopleInOrder, survivor }: Answer, { peopleContainer, 
 }
 
 // register to the run-button
-const runButton = document.getElementById("run")!;
+const runButton = document.getElementById("run");
 runButton.addEventListener("click", dirtyCallback)
 
 // and run once at the start

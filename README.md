@@ -12,7 +12,7 @@
 
 ## Logic
 
-Code: [src/main.ts](src/main.ts)  
+Code: [src/main.js](src/main.js)  
 HTML: [index.html](index.html)
 
 ## Notes
