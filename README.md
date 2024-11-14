@@ -1,5 +1,7 @@
 # wa-lab-1
 
+> An interactive version can be tested with the [deployed GitHub pages](https://roriwa.github.io/wa-lab-1)
+
 ## Constraints
 
 1. Your code should not define any JavaScript class.
