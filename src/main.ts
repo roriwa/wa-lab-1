@@ -71,12 +71,13 @@ function calculateJosephusProblem({ n, k }: Config): Answer {
 }
 
 function updateHTML({ deadPeopleInOrder, survivor }: Answer, { peopleContainer, result }: { peopleContainer: HTMLDivElement, result: HTMLDivElement }) {
-    function createPeopleElements(container: HTMLDivElement, n: number): HTMLDivElement[] {
-        if (n > 0) {
+    function createPeopleElements(container: HTMLDivElement, current: number, n: number): HTMLDivElement[] {
+        if (current < n) {
             const newPerson = document.createElement('div');
-            newPerson.className = 'rounded-full size-5 bg-slate-500 transition-colors duration-200';
+            newPerson.innerText = `${current+1}`;
+            newPerson.className = 'rounded-full size-5 bg-slate-500 transition-colors duration-200 grid place-content-center text-sm';
             container.appendChild(newPerson);
-            return [newPerson, ...createPeopleElements(container, n-1)];
+            return [newPerson, ...createPeopleElements(container, current + 1, n)];
         } else {
             return [];
         }
@@ -92,7 +93,7 @@ function updateHTML({ deadPeopleInOrder, survivor }: Answer, { peopleContainer, 
         applyAnimations(elements, deadInOrder, current + 1);
     }
 
-    const people = createPeopleElements(peopleContainer, deadPeopleInOrder.length + 1);
+    const people = createPeopleElements(peopleContainer, 0, deadPeopleInOrder.length+1);
     applyAnimations(people, deadPeopleInOrder, 0);
     result.textContent = `The Survivor is #${survivor+1}`;
 }
