@@ -9,14 +9,3 @@
 3. All objects and all variables in your JavaScript code should be immutable. That is, after initialisation, their value must not be changed.
 4. All functions in your JavaScript code should be pure.
 5. If, for any reason, any requirement defined in the above points 2–5 needs to be violated, you must document this and explain why.
-
-## Logic
-
-Code: [src/main.js](src/main.js)  
-HTML: [index.html](index.html)
-
-## Notes
-
-- This code uses TypeScript instead of plain JavaScript
-- This code uses [vite](https://vite.dev/) as the build tool
-- This code uses [tailwindcss](https://tailwindcss.com/) for styling
